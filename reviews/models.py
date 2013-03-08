@@ -5,10 +5,12 @@ from nlprocess.functions import analize_text
 
 import ast
 
+### This set ListField, a custom field, to be instropected by south.
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^arguiew\.reviews\.models\.ListField"])
 
 
+### Model ListField
 class ListField(models.TextField):
     __metaclass__ = models.SubfieldBase
     description = "Stores a python list"
@@ -35,6 +37,7 @@ class ListField(models.TextField):
         value = self._get_val_from_obj(obj)
         return self.get_db_prep_value(value)
 
+### Model Product
 class Product(models.Model):
 	#represent client products
 	name = models.CharField('name',max_length=100)
@@ -43,6 +46,7 @@ class Product(models.Model):
 	def __unicode__(self):
 		return self.name
 
+### Model Review
 class Review(models.Model):
 	#represent users reviews about products
 	positive_text = models.CharField('pos',max_length=200)
@@ -67,6 +71,7 @@ class Review(models.Model):
 		super(Review,self).save()
 		#call to the api that process positive, negative and store it in the dbase. 
 
+### Model ReviewForm
 class ReviewForm(ModelForm):
 	class Meta:
 		model = Review
