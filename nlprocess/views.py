@@ -18,13 +18,17 @@ def json_get_features(request,text=None):
 	data = {}
 	feats = []
 	succ = False
+	num_feat = 0
 	try:
 		feats = get_features(text)
+		num_feat = len(feats)
 		succ = True
+
 	except:
 		#TODO: add logging
 		pass
 
 	data['success'] = succ
 	data['result'] = feats
+	data['num_feat'] = num_feat
 	return HttpResponse(json.dumps(data),mimetype="application/json")

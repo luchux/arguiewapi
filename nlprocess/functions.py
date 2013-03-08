@@ -5,7 +5,7 @@ def word_tokenize(text):
 	return text.split()
 
 #TODO: from nltk import pos_tag, word_tokenize
-
+#TOD: add our classifier for sentiment, words, etc. this is so naive.
 standard_features = {'clean':'clean',
 					'dirty':'clean',
 					 'comfort':'comfort',
@@ -39,6 +39,7 @@ standard_features = {'clean':'clean',
 					 'furniture':'ambience',
 					 'ambience':'ambience',
 					 'room':'comfort',
+					 'rooms':'comfort',
 					 'bed':'comfort',
 					 'noisy':'comfort',
 					 'silent':'comfort',
