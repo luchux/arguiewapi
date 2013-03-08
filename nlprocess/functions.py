@@ -53,12 +53,7 @@ def extract_features(lista):
 	feats_words = [word for word,tag in features]
 	return list(set(feats_words))
 	
-def analyze_text(text):
-	#if request.method == "POST":
-	#	text = request.POST
+def analize_text(text):
 	postag = pos_tag(word_tokenize(text))
 	feats = extract_features(postag)
 	return feats
-
-if __name__ == '__main__':
-	print analyze_text("metro")

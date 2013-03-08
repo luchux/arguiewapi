@@ -1,1 +1,4 @@
 *.pyc
+reviews/*.pyc
+nlprocess/*.pyc
+arguiew/*.pyc

@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
-from nlprocess.functions import analyze_text
+from nlprocess.functions import analize_text
+
 import ast
 
 from south.modelsinspector import add_introspection_rules
@@ -60,8 +61,8 @@ class Review(models.Model):
 		#This is a patch. This should call the propper API to process the text
 		#and get the features back. 
 		
-		self.positive_feats = analyze_text(self.positive_text)
-		self.negative_feats = analyze_text(self.negative_text)
+		self.positive_feats = analize_text(self.positive_text)
+		self.negative_feats = analize_text(self.negative_text)
 
 		super(Review,self).save()
 		#call to the api that process positive, negative and store it in the dbase. 
