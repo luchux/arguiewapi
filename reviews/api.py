@@ -1,5 +1,5 @@
 from tastypie.resources import ModelResource
-from arguiew.reviews.models import Review
+from reviews.models import Review
 
 class ReviewResource(ModelResource):
     class Meta:
