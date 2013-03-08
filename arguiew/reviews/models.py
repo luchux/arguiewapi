@@ -1,9 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models import ForeignKey
 from django.forms import ModelForm
-from classifier.functions import analyze_text
+from nlprocess.functions import analyze_text
 import ast
+
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], ["^arguiew\.reviews\.models\.ListField"])
+
 
 class ListField(models.TextField):
     __metaclass__ = models.SubfieldBase
@@ -39,7 +42,6 @@ class Product(models.Model):
 	def __unicode__(self):
 		return self.name
 
-
 class Review(models.Model):
 	#represent users reviews about products
 	positive_text = models.CharField('pos',max_length=200)
@@ -57,6 +59,7 @@ class Review(models.Model):
 	def save(self, *args, **kwargs):
 		#This is a patch. This should call the propper API to process the text
 		#and get the features back. 
+		
 		self.positive_feats = analyze_text(self.positive_text)
 		self.negative_feats = analyze_text(self.negative_text)
 

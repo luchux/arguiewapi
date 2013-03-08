@@ -1,15 +1,15 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from arguiew.reviews.api import ReviewResource
+
 admin.autodiscover()
 
+review_resource = ReviewResource()
+
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'arguiew.views.home', name='home'),
-    # url(r'^arguiew/', include('arguiew.foo.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/', include(review_resource.urls)),
+
 )
