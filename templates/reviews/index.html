@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block container %}
+<!-- enable the modal, info when clicked over review
+<script type="text/javascript" src="static/js/load_modal.js"></script>
+-->
+<div class="container">
+
+  <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="row-fluid">
+      
+        <div class="span12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th>Positive</th>
+                  <th>Feats</th>
+                  <th>Negative</th>
+                  <th>Feats</th>
+                  <th>Product ID</th>
+                  <th>User Name</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            {% for review in review_list %}
+
+              <!-- row 1 -->
+
+              <tr>
+                <td> {{ review.positive_text }} </td>
+                <td> {{ review.positive_feats }} </td>
+                <td> {{ review.negative_text }} </td>
+                <td> {{ review.negative_feats }} </td>
+                <td> {{ review.product_id }} </td>
+                <td> {{ review.user.username }} </td>
+                
+              </tr>
+
+            {% endfor %}  
+
+            </tbody>
+          </table>
+        </div><!--span12-->
+    </div> <!--row-fluid-->
+
+    <div class="row-fluid well">
+      {% block form %}
+        <form class='form-inline' method='post' action='reviews/add'>
+          {% csrf_token %}
+          {{ form }}
+          <input type="submit" value="Submit" />
+        </form>
+      {% endblock %}
+    </div>
+
+    <div class="modal-backdrop fade in" style="display: none;" ></div>
+    <div class="modal hide fade in" id="myModal" style="display: none;"> </div>
+
+</div> <!-- /container -->
+
+    
+{% endblock container %}
