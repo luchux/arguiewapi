@@ -43,18 +43,7 @@
         </div><!--span12-->
     </div> <!--row-fluid-->
 
-    <div class="row-fluid well">
-      {% block form %}
-        <form class='form-inline' method='post' action='reviews/add'>
-          {% csrf_token %}
-          {{ form }}
-          <input type="submit" value="Submit" />
-        </form>
-      {% endblock %}
-    </div>
-
-    <div class="modal-backdrop fade in" style="display: none;" ></div>
-    <div class="modal hide fade in" id="myModal" style="display: none;"> </div>
+    {% include 'reviews/add.html' %}
 
 </div> <!-- /container -->
 
