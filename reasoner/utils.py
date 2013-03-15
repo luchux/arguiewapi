@@ -1,10 +1,3 @@
-'''
-Created on Nov 30, 2011
-
-@author: nicorotstein
-
-'''
-
 # -*- coding: utf-8 -*-
 NUM_RANDOM = 20
 

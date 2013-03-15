@@ -37,23 +37,26 @@ class ListField(models.TextField):
         value = self._get_val_from_obj(obj)
         return self.get_db_prep_value(value)
 
+
 ### Model Product
 class Product(models.Model):
 	#represent client products
-	name = models.CharField('name',max_length=100)
-	description = models.CharField('descripton',max_length=200)
-	
+	name = models.CharField('name', max_length=100)
+	description = models.CharField('descripton', max_length=200)
+
 	def __unicode__(self):
 		return self.name
+
 
 ### Model Review
 class Review(models.Model):
 	#represent users reviews about products
-	positive_text = models.CharField('pos',max_length=200)
-	negative_text = models.CharField('neg',max_length=200)
-	positive_feats = ListField(blank=True, null=True,editable=False)
-	negative_feats = ListField(blank=True, null=True,editable=False)
-	undecided_feats = ListField(blank=True, null=True,editable=False)
+
+	positive_text = models.CharField('pos', max_length=200)
+	negative_text = models.CharField('neg', max_length=200)
+	positive_feats = ListField(blank=True, null=True, editable=False)
+	negative_feats = ListField(blank=True, null=True, editable=False)
+	undecided_feats = ListField(blank=True, null=True, editable=False)
 	rating = models.IntegerField(blank=True, null=True)
 	product = models.ForeignKey(Product)
 	user = models.ForeignKey(User)
@@ -71,11 +74,12 @@ class Review(models.Model):
 		super(Review,self).save()
 		#call to the api that process positive, negative and store it in the dbase. 
 
+
 ### Model ReviewForm
 class ReviewForm(ModelForm):
 	class Meta:
 		model = Review
-		fields = ('positive_text','negative_text','rating','product')
+		fields = ('positive_text', 'negative_text', 'rating', 'product')
 
 	def __init__(self, user, *args, **kwargs):
 		self.user = user
